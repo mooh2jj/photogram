@@ -1,6 +1,5 @@
 package com.cos.photogramstart.web.dto.auth;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -11,7 +10,7 @@ import lombok.Data;
 @Data
 public class SignupDto {
 
-	@Size(min = 4, max = 10)
+	@Size(min = 3, max = 10)
 	@NotBlank
 	private String username;
 	@NotBlank
