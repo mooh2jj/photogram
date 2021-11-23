@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.AuthService;
 import com.cos.photogramstart.web.dto.auth.SignupDto;
 
@@ -39,7 +40,6 @@ public class AuthController {
 	}
 	
 	@PostMapping("/signup")
-	@ResponseBody
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
@@ -49,7 +49,8 @@ public class AuthController {
 				errorMap.put(error.getField(), error.getDefaultMessage());	// bindingResult에 모아짐!				
 				log.error("error.getDefaultMessage: {}", error.getDefaultMessage());
 			}
-			return "오류남";
+//			throw new RuntimeException("유효성 검사 실패");
+			throw new CustomValidationException("유효성 검사 실패", errorMap);
 		} else {
 			log.info("signup 실행됨");
 			log.info("signupDto: {}", signupDto.toString());
