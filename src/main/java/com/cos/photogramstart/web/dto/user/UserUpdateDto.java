@@ -18,14 +18,13 @@ public class UserUpdateDto {
 	// 조금 위험 : 코드 수정 불가피
 	public User toEntity() {
 		return User.builder()
-				.name(name)
-				.password(password)
+				.name(name)				// validation 체크해야
+				.password(password)		// validation 체크해야
 				.website(website)
 				.bio(bio)
 				.phone(phone)
 				.gender(gender)
 				.build();
 	}
-	
 	
 }
