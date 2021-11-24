@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// super 삭제 - 기존 시큐리티가 가지고 있는 기능이 다 비활성화됨.
-		http.csrf().disable();
+		http.csrf().disable();			// csrf protection을 비활성화하는 것임!
 		http.authorizeRequests()
 			.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated()	// 이 주소들은 인증이 필요함. 302code 가 뜸. 
 			.anyRequest().permitAll()	// 그외 주소는 허용됨.
